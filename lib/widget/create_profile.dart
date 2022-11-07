@@ -38,7 +38,7 @@ Widget createProfileDialog(
           'Books Read (${bookList.length})',
           style: Theme.of(context)
               .textTheme
-              .bodyText1!
+              .bodyText1
               .copyWith(color: Colors.redAccent),
         ),
         Row(
@@ -119,7 +119,7 @@ Widget createProfileDialog(
                           : " \" ${curUser.quote} \"",
                       style: Theme.of(context)
                           .textTheme
-                          .bodyText2!
+                          .bodyText2
                           .copyWith(fontStyle: FontStyle.italic),
                     ),
                   ),
@@ -147,7 +147,7 @@ Widget createProfileDialog(
                         ),
                         subtitle: Text('${book.author}'),
                       ),
-                      Text('Finished on: ${formatDate(book!.finishedReading!)}')
+                      Text('Finished on: ${formatDate(book.finishedReading)}')
                     ],
                   ),
                 );

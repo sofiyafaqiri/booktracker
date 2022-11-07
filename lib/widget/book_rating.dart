@@ -2,9 +2,9 @@ import 'package:book_tracker/constant/constant.dart';
 import 'package:flutter/material.dart';
 
 class BookRating extends StatelessWidget {
-  final double? score;
+  final double score;
 
-  const BookRating({Key? key, this.score}) : super(key: key);
+  const BookRating({Key key, this.score}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

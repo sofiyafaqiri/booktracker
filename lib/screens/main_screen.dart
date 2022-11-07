@@ -29,10 +29,10 @@ class MainScreenPage extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
-          final userListStream = snapshot.data!.docs.map((user) {
+          final userListStream = snapshot.data.docs.map((user) {
             return MUser.fromDocument(user);
           }).where((user) {
-            return (user.uid == FirebaseAuth.instance.currentUser!.uid);
+            return (user.uid == FirebaseAuth.instance.currentUser.uid);
           }).toList(); //
           MUser curUser = userListStream[0];
           return Scaffold(
@@ -44,7 +44,7 @@ class MainScreenPage extends StatelessWidget {
                 children: [
                   Text(
                     curUser.displayName,
-                    style: Theme.of(context).textTheme.headline6!.copyWith(
+                    style: Theme.of(context).textTheme.headline6.copyWith(
                         color: Colors.redAccent, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -128,7 +128,7 @@ class MainScreenPage extends StatelessWidget {
                             return CircularProgressIndicator();
                           }
                           var userBookFilteredReadListStream =
-                              snapshot.data!.docs.map((book) {
+                              snapshot.data.docs.map((book) {
                             return Book.fromDocument(book);
                           }).where((book) {
                             return (book.userId == authUser.uid) &&
@@ -136,7 +136,7 @@ class MainScreenPage extends StatelessWidget {
                                 (book.startedReading != null);
                           }).toList();
 
-                          userBooksReadList = snapshot.data!.docs.map((book) {
+                          userBooksReadList = snapshot.data.docs.map((book) {
                             return Book.fromDocument(book);
                           }).where((book) {
                             return (book.userId == authUser.uid) &&
@@ -158,8 +158,8 @@ class MainScreenPage extends StatelessWidget {
 
                                       return InkWell(
                                         child: ReadingListCard(
-                                          rating: book!.rating! != null
-                                              ? (book!.rating!)
+                                          rating: book.rating != null
+                                              ? (book.rating)
                                               : 4.0,
                                           buttonText: 'Reading',
                                           title: book.title,
@@ -221,7 +221,7 @@ class MainScreenPage extends StatelessWidget {
                             return CircularProgressIndicator();
                           }
                           var readingListListBook =
-                              snapshot.data!.docs!.map((book) {
+                              snapshot.data.docs.map((book) {
                             return Book.fromDocument(book);
                           }).where((book) {
                             return (book.userId == authUser.uid) &&
@@ -241,8 +241,8 @@ class MainScreenPage extends StatelessWidget {
                                         return InkWell(
                                           child: ReadingListCard(
                                               buttonText: 'Not Started',
-                                              rating: book!.rating != null
-                                                  ? (book!.rating!)
+                                              rating: book.rating != null
+                                                  ? (book.rating)
                                                   : 4.0,
                                               author: book.author,
                                               image: book.photoUrl,

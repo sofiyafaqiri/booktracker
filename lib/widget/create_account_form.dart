@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 
 class CreateAccountForm extends StatelessWidget {
   const CreateAccountForm({
-    Key? key,
-    required GlobalKey<FormState> formKey,
-    required TextEditingController emailTextController,
-    required TextEditingController passwordTextController,
+    Key key,
+    GlobalKey<FormState> formKey,
+    TextEditingController emailTextController,
+    TextEditingController passwordTextController,
   })  : _formKey = formKey,
         _emailTextController = emailTextController,
         _passwordTextController = passwordTextController,
@@ -31,7 +31,7 @@ class CreateAccountForm extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: TextFormField(
             validator: (value) {
-              return value!.isEmpty ? 'Please add an email' : null;
+              return value.isEmpty ? 'Please add an email' : null;
             },
             controller: _emailTextController,
             decoration: buildInputDecoration(
@@ -43,7 +43,7 @@ class CreateAccountForm extends StatelessWidget {
           child: TextFormField(
             validator: (value) {
               print('value $value');
-              return value!.isEmpty ? 'Enter password' : null;
+              return value.isEmpty ? 'Enter password' : null;
             },
             controller: _passwordTextController,
             obscureText: true,
@@ -62,7 +62,7 @@ class CreateAccountForm extends StatelessWidget {
                 backgroundColor: Colors.amber,
                 textStyle: TextStyle(fontSize: 18)),
             onPressed: () {
-              if (_formKey.currentState!.validate()) {
+              if (_formKey.currentState.validate()) {
                 String email = _emailTextController.text;
                 FirebaseAuth.instance
                     .createUserWithEmailAndPassword(
@@ -73,8 +73,8 @@ class CreateAccountForm extends StatelessWidget {
                     createUser(displayName, context).then((value) {
                       FirebaseAuth.instance
                           .signInWithEmailAndPassword(
-                          email: _emailTextController.text,
-                          password: _passwordTextController.text)
+                              email: _emailTextController.text,
+                              password: _passwordTextController.text)
                           .then((value) {
                         return Navigator.push(
                             context,

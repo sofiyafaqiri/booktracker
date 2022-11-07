@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 
 class UpdateUserProfile extends StatelessWidget {
   const UpdateUserProfile({
-    Key? key,
-    required this.user,
-    required TextEditingController displayNameTextController,
-    required TextEditingController profesionTextController,
-    required TextEditingController quoteTextController,
-    required TextEditingController avatarTextController,
+    Key key,
+    this.user,
+    TextEditingController displayNameTextController,
+    TextEditingController profesionTextController,
+    TextEditingController quoteTextController,
+    TextEditingController avatarTextController,
   })  : _displayNameTextController = displayNameTextController,
         _profesionTextController = profesionTextController,
         _quoteTextController = quoteTextController,

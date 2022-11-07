@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 
 class SearchdBookDetailDialog extends StatelessWidget {
   const SearchdBookDetailDialog({
-    Key? key,
-    required this.book,
-    required CollectionReference<Map<String, dynamic>> bookCollectionReference,
+    Key key,
+    this.book,
+    CollectionReference<Map<String, dynamic>> bookCollectionReference,
   })  : _bookCollectionReference = bookCollectionReference,
         super(key: key);
 
@@ -34,7 +34,7 @@ class SearchdBookDetailDialog extends StatelessWidget {
               book.title,
               style: Theme.of(context)
                   .textTheme
-                  .headline4!
+                  .headline4
                   .copyWith(fontWeight: FontWeight.bold),
             ),
           ),
@@ -79,7 +79,7 @@ class SearchdBookDetailDialog extends StatelessWidget {
               text: 'Save',
               press: () {
                 _bookCollectionReference.add(Book(
-                        userId: FirebaseAuth.instance.currentUser!.uid,
+                        userId: FirebaseAuth.instance.currentUser.uid,
                         title: book.title,
                         author: book.author,
                         photoUrl: book.photoUrl,

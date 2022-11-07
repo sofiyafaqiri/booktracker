@@ -2,31 +2,31 @@ import 'package:book_tracker/constant/constant.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Book {
-  final String? id;
+  final String id;
   final String title;
   final String author;
-  final String? notes;
+  final String notes;
   final String photoUrl;
   final String categories;
   final String publishedDate;
-  double? rating;
+  double rating;
   final String description;
   final int pageCount;
-  final Timestamp? startedReading;
-  final Timestamp? finishedReading;
-  final String? userId;
+  final Timestamp startedReading;
+  final Timestamp finishedReading;
+  final String userId;
 
   Book({
     this.id,
-    required this.title,
-    required this.author,
+    this.title,
+    this.author,
     this.notes,
-    required this.photoUrl,
-    required this.categories,
-    required this.publishedDate,
+    this.photoUrl,
+    this.categories,
+    this.publishedDate,
     this.rating,
-    required this.description,
-    required this.pageCount,
+    this.description,
+    this.pageCount,
     this.startedReading,
     this.finishedReading,
     this.userId,
@@ -40,7 +40,7 @@ class Book {
         photoUrl: data.get('photo_url'),
         categories: data.get('categories'),
         publishedDate: data.get('published_date'),
-        rating: parseDouble(data.get('rating'))!,
+        rating: parseDouble(data.get('rating')),
         description: data.get('description'),
         pageCount: data.get('page_count'),
         startedReading: data.get('started_reading_at'),

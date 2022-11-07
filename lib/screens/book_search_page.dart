@@ -13,7 +13,7 @@ class BookSearchPage extends StatefulWidget {
 }
 
 class _BookSearchPageState extends State<BookSearchPage> {
-  TextEditingController? _searchTextController;
+  TextEditingController _searchTextController;
 
   List<Book> listOfBooks = [];
   @override
@@ -82,7 +82,7 @@ class _BookSearchPageState extends State<BookSearchPage> {
   }
 
   void _search() async {
-    await fetchBooks(_searchTextController!.text).then((value) {
+    await fetchBooks(_searchTextController.text).then((value) {
       setState(() {
         listOfBooks = value;
       });

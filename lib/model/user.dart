@@ -9,12 +9,12 @@ class MUser {
   final String profession;
   final String avatarUrl;
   MUser(
-      {required this.id,
-      required this.uid,
-      required this.displayName,
-      required this.quote,
-      required this.profession,
-      required this.avatarUrl});
+      {this.id,
+      this.uid,
+      this.displayName,
+      this.quote,
+      this.profession,
+      this.avatarUrl});
 
   factory MUser.fromDocument(QueryDocumentSnapshot data) {
     // Map<String, dynamic> info= data.data();

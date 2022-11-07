@@ -6,8 +6,14 @@ import 'package:flutter/material.dart';
 Future<void> createUser(String displayName, BuildContext context) async {
   final userCollection = FirebaseFirestore.instance.collection('users');
   FirebaseAuth auth = FirebaseAuth.instance;
-  String uid = auth.currentUser!.uid;
-  MUser user = MUser(displayName: displayName, uid: uid, id: '', quote: '', profession: '', avatarUrl: '');
+  String uid = auth.currentUser.uid;
+  MUser user = MUser(
+      displayName: displayName,
+      uid: uid,
+      id: '',
+      quote: '',
+      profession: '',
+      avatarUrl: '');
 
   userCollection.add(user.toMap());
   return; // since it's a future void type

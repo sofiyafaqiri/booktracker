@@ -10,18 +10,18 @@ class ReadingListCard extends StatelessWidget {
   final String author;
   final double rating;
   final String buttonText;
-  final Book? book;
-  final bool? isBookRad;
-  final VoidCallback? pressDetails;
-  final VoidCallback? pressRead;
+  final Book book;
+  final bool isBookRad;
+  final VoidCallback pressDetails;
+  final VoidCallback pressRead;
 
   const ReadingListCard(
-      {Key? key,
-      required this.image,
-      required this.title,
-      required this.author,
+      {Key key,
+      this.image,
+      this.title,
+      this.author,
       this.rating = 4.5,
-      required this.buttonText,
+      this.buttonText,
       this.book,
       this.isBookRad,
       this.pressDetails,
