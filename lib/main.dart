@@ -1,10 +1,13 @@
 import 'package:book_tracker/screens/get_started_page.dart';
 import 'package:book_tracker/screens/login_page.dart';
 import 'package:book_tracker/screens/main_screen.dart';
+import 'package:book_tracker/screens/page_not_found.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+bool isUserLoggedIn = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -18,36 +21,82 @@ void main() async {
         measurementId: "G-558W804S1S"),
   );
 
-  runApp(const MyApp());
-}
+  isUserLoggedIn =
+      await FirebaseAuth.instance.currentUser != null ? true : false;
 
-bool isUserLoggedIn() {
-  User? currentUser = FirebaseAuth.instance.currentUser;
-  print('currentUser $currentUser');
-  return currentUser == null ? false : true;
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    // User? firebaseUser = FirebaseAuth.instance.currentUser;
-    // Widget widget;
-    // if (firebaseUser != null) {
-    //   print(firebaseUser.email);
-    //   widget = MainScreenPage();
-    // } else {
-    //   widget = LoginPage();
-    // }
-
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'BookTracker',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    // final firebaseUser = context.watch<User>();
+    // Stream<User>? authState =
+    //     FirebaseAuth.instance.authStateChanges() as Stream<User>?;
+    print('user logged in $isUserLoggedIn');
+    return MultiProvider(
+      providers: [
+        StreamProvider(
+          initialData: User(),
+          create: (context) =>
+              FirebaseAuth.instance.authStateChanges() as Stream<User>?,
+        )
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'BookTracker',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        // initialRoute: '/',
+        routes: {
+          '/': (context) => GetStartedPage(),
+          '/main': (context) => MainScreenPage(),
+          '/login': (context) => LoginPage()
+        },
+        //home: TesterApp(),
+        initialRoute: isUserLoggedIn ? '/main' : '/',
+        onGenerateRoute: (settings) {
+          print(settings.name);
+          return MaterialPageRoute(
+            builder: (context) {
+              return RouteController(settingName: settings.name);
+            },
+          );
+        },
+        onUnknownRoute: (settings) {
+          return MaterialPageRoute(
+            builder: (context) {
+              return PageNotFound();
+            },
+          );
+        },
       ),
-      home: isUserLoggedIn() ? MainScreenPage() : LoginPage(),
     );
+  }
+}
+
+class RouteController extends StatelessWidget {
+  final String? settingName;
+
+  const RouteController({Key? key, required this.settingName})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    final userSignedIn = Provider.of<User>(context) != null;
+
+    final signedInGotoMain =
+        userSignedIn && settingName == '/main'; // they are good to go!
+    final notSignedIngotoMain = !userSignedIn &&
+        settingName == '/main'; // not signed in user trying to to the mainPage
+    if (settingName == '/') {
+      return GetStartedPage();
+    } else if (settingName == '/login' || notSignedIngotoMain) {
+      return LoginPage();
+    } else if (signedInGotoMain) {
+      return MainScreenPage();
+    } else {
+      return PageNotFound();
+    }
   }
 }

@@ -8,14 +8,13 @@ class MUser {
   final String quote;
   final String profession;
   final String avatarUrl;
-
   MUser(
       {required this.id,
-        required this.uid,
-        required this.displayName,
-        required this.quote,
-        required this.profession,
-        required this.avatarUrl});
+      required this.uid,
+      required this.displayName,
+      required this.quote,
+      required this.profession,
+      required this.avatarUrl});
 
   factory MUser.fromDocument(QueryDocumentSnapshot data) {
     // Map<String, dynamic> info= data.data();
