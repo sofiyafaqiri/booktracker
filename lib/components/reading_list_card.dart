@@ -1,5 +1,5 @@
-import 'package:book_tracker/constant/constant.dart';
-import 'package:book_tracker/model/book.dart';
+import 'package:book_tracker/utilities/constant.dart';
+import 'package:book_tracker/models/book_model.dart';
 import 'book_rating.dart';
 import 'two_sided_roundbutton.dart';
 import 'package:flutter/material.dart';
@@ -31,8 +31,10 @@ class ReadingListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 24, bottom: 0),
-      width: 202,
+      // margin: EdgeInsets.only(left: 14, bottom: 14, top: 14),
+      padding: EdgeInsets.all(14),
+      width: 230,
+      // height: 244,
       child: Stack(
         children: [
           Positioned(
@@ -46,7 +48,7 @@ class ReadingListCard extends StatelessWidget {
                     boxShadow: [
                       BoxShadow(
                           offset: Offset(0, 10),
-                          blurRadius: 33,
+                          blurRadius: 14,
                           color: kShadowColor)
                     ]),
               )),

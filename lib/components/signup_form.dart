@@ -1,6 +1,7 @@
 import 'package:book_tracker/screens/main_screen.dart';
 import 'package:book_tracker/services/create_user.dart';
-import 'package:book_tracker/widget/input_decoration.dart';
+import 'package:book_tracker/components/input_decoration.dart';
+import 'package:book_tracker/utilities/constant.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -54,40 +55,38 @@ class CreateAccountForm extends StatelessWidget {
           height: 20,
         ),
         TextButton(
-            style: TextButton.styleFrom(
-                primary: Colors.white,
-                padding: EdgeInsets.all(15),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4)),
-                backgroundColor: Colors.amber,
-                textStyle: TextStyle(fontSize: 18)),
-            onPressed: () {
-              if (_formKey.currentState.validate()) {
-                String email = _emailTextController.text;
-                FirebaseAuth.instance
-                    .createUserWithEmailAndPassword(
-                        email: email, password: _passwordTextController.text)
-                    .then((value) {
-                  if (value.user != null) {
-                    String displayName = email.toString().split('@')[0];
-                    createUser(displayName, context).then((value) {
-                      FirebaseAuth.instance
-                          .signInWithEmailAndPassword(
-                              email: _emailTextController.text,
-                              password: _passwordTextController.text)
-                          .then((value) {
-                        return Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MainScreenPage(),
-                            ));
-                      });
+          style: kLoginButtonStyle,
+          onPressed: () {
+            if (_formKey.currentState.validate()) {
+              String email = _emailTextController.text;
+              FirebaseAuth.instance
+                  .createUserWithEmailAndPassword(
+                      email: email, password: _passwordTextController.text)
+                  .then((value) {
+                if (value.user != null) {
+                  String displayName = email.toString().split('@')[0];
+                  createUser(displayName, context).then((value) {
+                    FirebaseAuth.instance
+                        .signInWithEmailAndPassword(
+                            email: _emailTextController.text,
+                            password: _passwordTextController.text)
+                        .then((value) {
+                      return Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MainScreenPage(),
+                          ));
                     });
-                  }
-                });
-              }
-            },
-            child: Text('Create Account'))
+                  });
+                }
+              });
+            }
+          },
+          child: const Text(
+            'Create Account',
+            style: TextStyle(color: Colors.white),
+          ),
+        )
       ]),
     );
   }

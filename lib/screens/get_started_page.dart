@@ -1,6 +1,6 @@
-import 'package:book_tracker/screens/login_page.dart';
-import 'package:book_tracker/widget/input_decoration.dart';
-import 'package:book_tracker/widget/login_form.dart';
+import 'package:book_tracker/screens/login_screen.dart';
+import 'package:book_tracker/components/input_decoration.dart';
+import 'package:book_tracker/components/login_form.dart';
 import 'package:flutter/material.dart';
 
 class GetStartedPage extends StatelessWidget {
@@ -51,5 +51,3 @@ class GetStartedPage extends StatelessWidget {
     );
   }
 }
-
-

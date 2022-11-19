@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:book_tracker/model/book.dart';
-import 'package:book_tracker/widget/input_decoration.dart';
-import '/widget/searched_book_detail_dialog.dart';
+import 'package:book_tracker/models/book_model.dart';
+import 'package:book_tracker/components/input_decoration.dart';
+import '/components/searched_book_detail_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;

@@ -1,13 +1,11 @@
-import 'package:book_tracker/model/book.dart';
-import 'package:book_tracker/model/user.dart';
-import 'package:book_tracker/util/util.dart';
-import 'input_decoration.dart';
+import 'package:book_tracker/models/book_model.dart';
+import 'package:book_tracker/models/user_model.dart';
+import 'package:book_tracker/utilities/utility.dart';
 import 'update_user_profile.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 Widget createProfileDialog(
-    BuildContext context, MUser curUser, List<Book> bookList) {
+    BuildContext context, BookUser curUser, List<Book> bookList) {
   final TextEditingController _displayNameTextController =
       TextEditingController(text: curUser.displayName);
   final TextEditingController _profesionTextController =

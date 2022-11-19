@@ -1,4 +1,5 @@
-import 'package:book_tracker/constant/constant.dart';
+import 'package:book_tracker/utilities/constant.dart';
+import 'package:book_tracker/utilities/utility.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Book {

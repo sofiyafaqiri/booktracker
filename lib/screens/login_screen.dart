@@ -1,5 +1,6 @@
-import 'package:book_tracker/widget/create_account_form.dart';
-import 'package:book_tracker/widget/login_form.dart';
+import 'package:book_tracker/components/signup_form.dart';
+import 'package:book_tracker/components/login_form.dart';
+import 'package:book_tracker/utilities/constant.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -18,22 +19,32 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Container(
-        child: Column(
-          children: [
-            Expanded(
-                flex: 2,
-                child: Container(
-                  color: Colors.black26,
-                )),
-            Text(
-              'Sign In',
-              style: Theme.of(context).textTheme.headline5,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Column(
+      child: Column(
+        children: [
+          Expanded(
+              flex: 2,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Icon(Icons.book, color: kIconColor, size: 50),
+                  SizedBox(height: 18),
+                  Text(
+                    'Book Tracker',
+                    style: TextStyle(fontSize: 30, color: kIconColor),
+                  )
+                ],
+              )),
+          Text(
+            isCreateAccountClicked ? 'Sign Up' : 'Sign In',
+            style: Theme.of(context).textTheme.headline5,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Expanded(
+            flex: 3,
+            child: Column(
               children: [
                 SizedBox(
                     width: 300,
@@ -48,17 +59,18 @@ class _LoginPageState extends State<LoginPage> {
                             emailTextController: _emailTextController,
                             passwordTextController: _passwordTextController)),
                 TextButton.icon(
-                  icon: Icon(Icons.portrait_rounded),
+                  icon: const Icon(Icons.portrait_rounded),
                   style: TextButton.styleFrom(
-                      primary: Colors.red,
-                      textStyle:
-                          TextStyle(fontSize: 18, fontStyle: FontStyle.italic)),
+                      // primary: Colors.red,
+                      textStyle: const TextStyle(
+                          fontSize: 18, fontStyle: FontStyle.italic)),
                   onPressed: () {
                     setState(() {
                       if (!isCreateAccountClicked) {
                         isCreateAccountClicked = true;
-                      } else
+                      } else {
                         isCreateAccountClicked = false;
+                      }
                     });
                   },
                   label: Text(isCreateAccountClicked
@@ -67,13 +79,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
             ),
-            Expanded(
-                flex: 2,
-                child: Container(
-                  color: Colors.black26,
-                )),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

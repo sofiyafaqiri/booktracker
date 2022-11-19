@@ -1,5 +1,5 @@
-import 'package:book_tracker/constant/constant.dart';
-import 'package:book_tracker/model/book.dart';
+import 'package:book_tracker/utilities/constant.dart';
+import 'package:book_tracker/models/book_model.dart';
 import 'two_sided_roundbutton.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

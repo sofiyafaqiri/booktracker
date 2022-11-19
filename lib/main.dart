@@ -1,8 +1,9 @@
-import 'package:book_tracker/constant/constant.dart';
+import 'package:book_tracker/utilities/constant.dart';
 import 'package:book_tracker/screens/get_started_page.dart';
-import 'package:book_tracker/screens/login_page.dart';
+import 'package:book_tracker/screens/login_screen.dart';
 import 'package:book_tracker/screens/main_screen.dart';
 import 'package:book_tracker/screens/page_not_found.dart';
+import 'package:book_tracker/utilities/route_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -23,10 +24,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // final firebaseUser = context.watch<User>();
-    // Stream<User>? authState =
-    //     FirebaseAuth.instance.authStateChanges() as Stream<User>?;
-    print('user logged in $isUserLoggedIn');
     return MultiProvider(
       providers: [
         StreamProvider<User>(
@@ -40,13 +37,11 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        // initialRoute: '/',
         routes: {
-          '/': (context) => GetStartedPage(),
+          '/': (context) => LoginPage(),
           '/main': (context) => MainScreenPage(),
           '/login': (context) => LoginPage()
         },
-        //home: TesterApp(),
         initialRoute: isUserLoggedIn ? '/main' : '/',
         onGenerateRoute: (settings) {
           print(settings.name);
@@ -65,30 +60,5 @@ class MyApp extends StatelessWidget {
         },
       ),
     );
-  }
-}
-
-class RouteController extends StatelessWidget {
-  final String settingName;
-
-  const RouteController({Key key, this.settingName}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final userSignedIn = Provider.of<User>(context) != null;
-
-    final signedInGotoMain =
-        userSignedIn && settingName == '/main'; // they are good to go!
-    final notSignedIngotoMain = !userSignedIn &&
-        settingName == '/main'; // not signed in user trying to to the mainPage
-    if (settingName == '/') {
-      return GetStartedPage();
-    } else if (settingName == '/login' || notSignedIngotoMain) {
-      return LoginPage();
-    } else if (signedInGotoMain) {
-      return MainScreenPage();
-    } else {
-      return PageNotFound();
-    }
   }
 }

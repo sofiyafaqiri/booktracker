@@ -1,5 +1,6 @@
 import 'package:book_tracker/screens/main_screen.dart';
-import 'package:book_tracker/widget/input_decoration.dart';
+import 'package:book_tracker/components/input_decoration.dart';
+import 'package:book_tracker/utilities/constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,7 @@ class LoginForm extends StatelessWidget {
             },
             controller: _emailTextController,
             decoration: buildInputDecoration(
-                label: 'Enter email', hintText: 'name@gmail.com'),
+                label: 'Email Address', hintText: 'name@gmail.com'),
           ),
         ),
         Padding(
@@ -42,20 +43,14 @@ class LoginForm extends StatelessWidget {
             },
             controller: _passwordTextController,
             obscureText: true,
-            decoration: buildInputDecoration(label: 'password', hintText: ''),
+            decoration: buildInputDecoration(label: 'Password', hintText: ''),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         TextButton(
-            style: TextButton.styleFrom(
-                primary: Colors.white,
-                padding: EdgeInsets.all(15),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4)),
-                backgroundColor: Colors.amber,
-                textStyle: TextStyle(fontSize: 18)),
+            style: kLoginButtonStyle,
             onPressed: () {
               if (_formKey.currentState.validate()) {
                 FirebaseAuth.instance
@@ -70,7 +65,10 @@ class LoginForm extends StatelessWidget {
                 });
               }
             },
-            child: Text('Sign In'))
+            child: const Text(
+              'Sign In',
+              style: TextStyle(color: Colors.white),
+            ))
       ]),
     );
   }

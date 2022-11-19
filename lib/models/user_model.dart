@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class MUser {
+class BookUser {
   final String id;
   final String uid;
   final String displayName;
   final String quote;
   final String profession;
   final String avatarUrl;
-  MUser(
+  BookUser(
       {this.id,
       this.uid,
       this.displayName,
@@ -16,9 +16,8 @@ class MUser {
       this.profession,
       this.avatarUrl});
 
-  factory MUser.fromDocument(QueryDocumentSnapshot data) {
-    // Map<String, dynamic> info= data.data();
-    return MUser(
+  factory BookUser.fromDocument(QueryDocumentSnapshot data) {
+    return BookUser(
       id: data.id,
       uid: data.get('uid'),
       displayName: data.get('display_name'),

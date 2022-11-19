@@ -1,4 +1,6 @@
-import 'package:book_tracker/constant/constant.dart';
+import 'dart:io';
+
+import 'package:book_tracker/utilities/constant.dart';
 import 'package:flutter/material.dart';
 
 class TwoSidedRoundeButton extends StatelessWidget {
@@ -17,9 +19,17 @@ class TwoSidedRoundeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isMobile = null;
+    try {
+      isMobile = (Platform.isIOS || Platform.isAndroid);
+    } catch (e) {
+      isMobile = false;
+    }
+
     return GestureDetector(
         onTap: press,
         child: Container(
+          width: !isMobile ? (text.length * 8) + 32 as double : null,
           alignment: Alignment.center,
           padding: EdgeInsets.symmetric(vertical: 10),
           decoration: BoxDecoration(

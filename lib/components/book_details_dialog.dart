@@ -1,7 +1,7 @@
-import 'package:book_tracker/constant/constant.dart';
-import 'package:book_tracker/model/book.dart';
+import 'package:book_tracker/utilities/constant.dart';
+import 'package:book_tracker/models/book_model.dart';
 import 'package:book_tracker/screens/main_screen.dart';
-import 'package:book_tracker/util/util.dart';
+import 'package:book_tracker/utilities/utility.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'input_decoration.dart';
 import 'two_sided_roundbutton.dart';
@@ -219,7 +219,8 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
 
                         final userChangedNotes =
                             widget.book.notes != _notestTextController.text;
-
+                        print(
+                            'isFinishedReadingClicked $isFinishedReadingClicked');
                         final bookUpdate = userChangedTitle ||
                             userChangedAuthor ||
                             userChangedRating ||

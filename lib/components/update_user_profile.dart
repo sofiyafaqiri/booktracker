@@ -1,5 +1,5 @@
-import 'package:book_tracker/model/user.dart';
-import 'package:book_tracker/widget/input_decoration.dart';
+import 'package:book_tracker/models/user_model.dart';
+import 'package:book_tracker/components/input_decoration.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class UpdateUserProfile extends StatelessWidget {
         _avatarTextController = avatarTextController,
         super(key: key);
 
-  final MUser user;
+  final BookUser user;
   final TextEditingController _displayNameTextController;
   final TextEditingController _profesionTextController;
   final TextEditingController _quoteTextController;
@@ -105,7 +105,7 @@ class UpdateUserProfile extends StatelessWidget {
                   FirebaseFirestore.instance
                       .collection('users')
                       .doc(user.id)
-                      .update(MUser(
+                      .update(BookUser(
                               uid: user.uid,
                               displayName: _displayNameTextController.text,
                               avatarUrl: _avatarTextController.text,
