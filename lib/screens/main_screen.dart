@@ -16,7 +16,7 @@ import '../components/fab.dart';
 class MainScreenPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    bool isMobile = null;
+    bool isMobile;
     try {
       isMobile = (Platform.isIOS || Platform.isAndroid);
     } catch (e) {

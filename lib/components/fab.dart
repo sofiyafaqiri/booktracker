@@ -1,4 +1,5 @@
 import 'package:book_tracker/screens/search_screen.dart';
+import 'package:book_tracker/utilities/constant.dart';
 import 'package:flutter/material.dart';
 
 class FAB extends StatelessWidget {
@@ -16,7 +17,7 @@ class FAB extends StatelessWidget {
               builder: (context) => BookSearchPage(),
             ));
       },
-      backgroundColor: Colors.redAccent,
+      backgroundColor: kIconColor,
       child: const Icon(Icons.add),
     );
   }
