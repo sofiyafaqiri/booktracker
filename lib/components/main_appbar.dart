@@ -40,7 +40,7 @@ class MainAppbar extends StatelessWidget with PreferredSizeWidget {
       actions: [
         InkWell(
           child: CircleAvatar(
-            radius: 19,
+            radius: 22,
             backgroundImage:
                 NetworkImage(curUser.avatarUrl ?? 'http://i.pravatar.cc/300'),
             backgroundColor: Colors.white,

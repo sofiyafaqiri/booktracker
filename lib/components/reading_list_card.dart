@@ -108,7 +108,9 @@ class ReadingListCard extends StatelessWidget {
                             child: TwoSidedRoundeButton(
                                 text: buttonText,
                                 press: pressRead,
-                                color: kLightPurple))
+                                color: buttonText == 'Reading'
+                                    ? kIconColor
+                                    : kLightPurple))
                       ],
                     )
                   ],
