@@ -23,7 +23,7 @@ class MainScreenPage extends StatelessWidget {
       isMobile = false;
     }
 
-    print('DPR ${MediaQuery.of(context).devicePixelRatio}');
+    // print('DPR ${MediaQuery.of(context).devicePixelRatio}');
     CollectionReference userCollection =
         FirebaseFirestore.instance.collection('users');
     CollectionReference bookCollectionReference =
@@ -35,7 +35,7 @@ class MainScreenPage extends StatelessWidget {
         stream: userCollection.snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const LoadingIndicator();
+            return CircularProgressIndicator();
           }
           final userListStream = snapshot.data.docs.map((user) {
             return BookUser.fromDocument(user);
@@ -43,6 +43,7 @@ class MainScreenPage extends StatelessWidget {
             return (user.uid == FirebaseAuth.instance?.currentUser?.uid);
           }).toList(); //
           BookUser curUser = userListStream[0];
+
           return Scaffold(
             appBar: MainAppbar(
                 curUser: curUser, userBooksReadList: userBooksReadList),
@@ -69,7 +70,7 @@ class MainScreenPage extends StatelessWidget {
                                   fontWeight: FontWeight.bold),
                             ),
                             // TextSpan(
-                            //     text: 'right now...',
+                            //     text: ' right now...',
                             //     style: TextStyle(fontWeight: FontWeight.bold))
                           ])),
                     ),

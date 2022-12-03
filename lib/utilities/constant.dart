@@ -24,7 +24,7 @@ const kLightPurple = Color(0xBA68C8d4);
 final kShadowColor = Color(0xFFD3D3D3).withOpacity(.84);
 
 var kLoginButtonStyle = TextButton.styleFrom(
-    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     backgroundColor: kIconColor,
     textStyle: const TextStyle(fontSize: 18));

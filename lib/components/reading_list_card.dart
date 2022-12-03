@@ -52,11 +52,14 @@ class ReadingListCard extends StatelessWidget {
                           color: kShadowColor)
                     ]),
               )),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.network(
-              image,
-              width: 100,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15), // Image border
+            child: SizedBox.fromSize(
+              size: Size.fromRadius(48), // Image radius
+              child: Image.network(
+                image,
+                width: 100,
+              ),
             ),
           ),
           Positioned(

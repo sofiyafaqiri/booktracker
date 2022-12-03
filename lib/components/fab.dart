@@ -18,7 +18,7 @@ class FAB extends StatelessWidget {
             ));
       },
       backgroundColor: kIconColor,
-      child: const Icon(Icons.add),
+      child: const Icon(Icons.search),
     );
   }
 }

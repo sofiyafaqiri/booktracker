@@ -34,9 +34,6 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'BookTracker',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
         routes: {
           '/': (context) => LoginPage(),
           '/main': (context) => MainScreenPage(),

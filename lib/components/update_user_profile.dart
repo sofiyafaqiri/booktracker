@@ -101,7 +101,7 @@ class UpdateUserProfile extends StatelessWidget {
                     userChangedQuote;
 
                 if (userNeedUpdate) {
-                  print('Updating...');
+                  print('Updating... ${user.id}');
                   FirebaseFirestore.instance
                       .collection('users')
                       .doc(user.id)

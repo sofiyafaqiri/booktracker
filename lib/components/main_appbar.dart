@@ -43,7 +43,7 @@ class MainAppbar extends StatelessWidget with PreferredSizeWidget {
             radius: 22,
             backgroundImage:
                 NetworkImage(curUser.avatarUrl ?? 'http://i.pravatar.cc/300'),
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.black26,
           ),
           onTap: () {
             showDialog(

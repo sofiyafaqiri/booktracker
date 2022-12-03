@@ -46,18 +46,21 @@ class _LoginPageState extends State<LoginPage> {
             flex: 3,
             child: Column(
               children: [
-                SizedBox(
-                    width: 300,
-                    height: 300,
-                    child: isCreateAccountClicked != true
-                        ? LoginForm(
-                            formKey: _formKey,
-                            emailTextController: _emailTextController,
-                            passwordTextController: _passwordTextController)
-                        : CreateAccountForm(
-                            formKey: _formKey,
-                            emailTextController: _emailTextController,
-                            passwordTextController: _passwordTextController)),
+                Container(
+                  padding: EdgeInsets.all(12),
+                  child: Expanded(
+                      // width: 300,
+                      // height: 300,
+                      child: isCreateAccountClicked != true
+                          ? LoginForm(
+                              formKey: _formKey,
+                              emailTextController: _emailTextController,
+                              passwordTextController: _passwordTextController)
+                          : CreateAccountForm(
+                              formKey: _formKey,
+                              emailTextController: _emailTextController,
+                              passwordTextController: _passwordTextController)),
+                ),
                 TextButton.icon(
                   icon: const Icon(Icons.portrait_rounded),
                   style: TextButton.styleFrom(

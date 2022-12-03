@@ -24,7 +24,7 @@ Widget createProfileDialog(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
-              backgroundColor: Colors.transparent,
+              backgroundColor: Colors.black26,
               backgroundImage: NetworkImage(curUser.avatarUrl == null
                   ? 'https://i.pravatar.cc/300'
                   : curUser.avatarUrl),
