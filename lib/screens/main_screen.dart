@@ -35,9 +35,14 @@ class MainScreenPage extends StatelessWidget {
         stream: userCollection.snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const Scaffold(
+                body: Center(
+                    child: SizedBox(
+                        height: 50,
+                        width: 50,
+                        child: CircularProgressIndicator())));
           }
-          final userListStream = snapshot.data.docs.map((user) {
+          final userListStream = snapshot.data!.docs.map((user) {
             return BookUser.fromDocument(user);
           }).where((user) {
             return (user.uid == FirebaseAuth.instance?.currentUser?.uid);
@@ -84,9 +89,16 @@ class MainScreenPage extends StatelessWidget {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
                                 return CircularProgressIndicator();
+                                // const Scaffold(
+                                //   body: Center(
+                                //       child: SizedBox(
+                                //           height: 50,
+                                //           width: 50,
+                                //           child:
+                                //               CircularProgressIndicator())));
                               }
                               var userBookFilteredReadListStream =
-                                  snapshot.data.docs.map((book) {
+                                  snapshot.data!.docs.map((book) {
                                 return Book.fromDocument(book);
                               }).where((book) {
                                 return (book.userId == authUser.uid) &&
@@ -95,7 +107,7 @@ class MainScreenPage extends StatelessWidget {
                               }).toList();
 
                               userBooksReadList =
-                                  snapshot.data.docs.map((book) {
+                                  snapshot.data!.docs.map((book) {
                                 return Book.fromDocument(book);
                               }).where((book) {
                                 return (book.userId == authUser.uid) &&
@@ -131,13 +143,13 @@ class MainScreenPage extends StatelessWidget {
                                             //   image: book.photoUrl,
                                             // ),
                                             child: ReadingListCard(
-                                              rating: book.rating != null
-                                                  ? (book.rating)
+                                              rating: book.rating! != null
+                                                  ? (book.rating!)
                                                   : 4.0,
                                               buttonText: 'Reading',
-                                              title: book.title,
-                                              author: book.author,
-                                              image: book.photoUrl,
+                                              title: book.title!,
+                                              author: book.author!,
+                                              image: book.photoUrl!,
                                             ),
                                             onTap: () {
                                               showDialog(
@@ -194,7 +206,7 @@ class MainScreenPage extends StatelessWidget {
                                 return CircularProgressIndicator();
                               }
                               var readingListListBook =
-                                  snapshot.data.docs.map((book) {
+                                  snapshot.data!.docs.map((book) {
                                 return Book.fromDocument(book);
                               }).where((book) {
                                 return (book.userId == authUser.uid) &&
@@ -215,12 +227,12 @@ class MainScreenPage extends StatelessWidget {
                                             return InkWell(
                                               child: ReadingListCard(
                                                   buttonText: 'Not Started',
-                                                  rating: book.rating != null
-                                                      ? (book.rating)
+                                                  rating: book.rating! != null
+                                                      ? (book.rating!)
                                                       : 4.0,
-                                                  author: book.author,
-                                                  image: book.photoUrl,
-                                                  title: book.title),
+                                                  author: book.author!,
+                                                  image: book.photoUrl!,
+                                                  title: book.title!),
                                               onTap: () => showDialog(
                                                 context: context,
                                                 builder: (context) =>

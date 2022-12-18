@@ -11,11 +11,11 @@ import 'package:flutter/material.dart';
 
 class BookDetailsDialog extends StatefulWidget {
   const BookDetailsDialog({
-    Key key,
+    Key? key,
     @required this.book,
   }) : super(key: key);
 
-  final Book book;
+  final Book? book;
 
   @override
   _BookDetailsDialogState createState() => _BookDetailsDialogState();
@@ -24,26 +24,26 @@ class BookDetailsDialog extends StatefulWidget {
 class _BookDetailsDialogState extends State<BookDetailsDialog> {
   bool isReadingClicked = false;
   bool isFinishedReadingClicked = false;
-  TextEditingController _notestTextController;
+  TextEditingController? _notestTextController;
 
-  double _rating;
+  double? _rating;
   final _bookCollectionReference =
       FirebaseFirestore.instance.collection('books');
 
   @override
   void initState() {
-    _notestTextController = TextEditingController(text: widget.book.notes);
+    _notestTextController = TextEditingController(text: widget.book!.notes);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     TextEditingController _titleTextController =
-        TextEditingController(text: widget.book.title);
+        TextEditingController(text: widget.book!.title);
     TextEditingController _authorTextController =
-        TextEditingController(text: widget.book.author);
+        TextEditingController(text: widget.book!.author);
     TextEditingController _photoTextController =
-        TextEditingController(text: widget.book.photoUrl);
+        TextEditingController(text: widget.book!.photoUrl);
 
     // TextEditingController _notestTextController =
     //     TextEditingController(text: widget.book.notes);
@@ -57,7 +57,7 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
               Spacer(),
               CircleAvatar(
                 backgroundColor: Colors.transparent,
-                backgroundImage: NetworkImage(widget.book.photoUrl),
+                backgroundImage: NetworkImage(widget.book!.photoUrl!),
                 radius: 50,
               ),
               Spacer(),
@@ -70,7 +70,7 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
               )
             ],
           ),
-          Text(widget.book.author)
+          Text(widget.book!.author!)
         ],
       ),
       content: Form(
@@ -106,7 +106,7 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                   height: 5,
                 ),
                 TextButton.icon(
-                    onPressed: widget.book.startedReading == null
+                    onPressed: widget.book!.startedReading == null
                         ? () {
                             setState(() {
                               if (isReadingClicked == false) {
@@ -118,7 +118,7 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                           }
                         : null,
                     icon: Icon(Icons.book_sharp),
-                    label: (widget.book.startedReading == null)
+                    label: (widget.book!.startedReading == null)
                         ? (!isReadingClicked)
                             ? Text('Start Reading')
                             : Text(
@@ -127,9 +127,9 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                                     TextStyle(color: Colors.blueGrey.shade300),
                               )
                         : Text(
-                            'Started on: ${formatDate(widget.book.startedReading)}')),
+                            'Started on: ${formatDate(widget.book!.startedReading!)}')),
                 TextButton.icon(
-                    onPressed: widget.book.finishedReading == null
+                    onPressed: widget.book!.finishedReading == null
                         ? () {
                             setState(() {
                               if (isFinishedReadingClicked == false) {
@@ -141,7 +141,7 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                           }
                         : null,
                     icon: Icon(Icons.done),
-                    label: (widget.book.finishedReading == null)
+                    label: (widget.book!.finishedReading == null)
                         ? (!isFinishedReadingClicked)
                             ? Text('Mark as Read')
                             : Text(
@@ -149,11 +149,12 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                                 style: TextStyle(color: Colors.grey),
                               )
                         : Text(
-                            'Finished on ${formatDate(widget.book.finishedReading)}')),
+                            'Finished on ${formatDate(widget.book!.finishedReading!)}')),
                 RatingBar.builder(
                     allowHalfRating: true,
-                    initialRating:
-                        widget.book.rating != null ? widget.book.rating : 4.5,
+                    initialRating: widget.book!.rating != null
+                        ? widget.book!.rating!
+                        : 4.5,
                     itemCount: 5,
                     itemBuilder: (context, index) {
                       switch (index) {
@@ -209,16 +210,17 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                       press: () {
                         // Only update if new data was entered
                         final userChangedTitle =
-                            widget.book.title != _titleTextController.text;
+                            widget.book!.title != _titleTextController.text;
                         final userChangedAuthor =
-                            widget.book.author != _authorTextController.text;
+                            widget.book!.author != _authorTextController.text;
                         final userChangedPhotoUrl =
-                            widget.book.author != _photoTextController.text;
+                            widget.book!.author != _photoTextController.text;
 
-                        final userChangedRating = widget.book.rating != _rating;
+                        final userChangedRating =
+                            widget.book!.rating != _rating;
 
                         final userChangedNotes =
-                            widget.book.notes != _notestTextController.text;
+                            widget.book!.notes != _notestTextController!.text;
                         print(
                             'isFinishedReadingClicked $isFinishedReadingClicked');
                         final bookUpdate = userChangedTitle ||
@@ -228,22 +230,20 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                             userChangedNotes;
                         if (bookUpdate) {
                           _bookCollectionReference
-                              .doc(widget.book.id)
+                              .doc(widget.book!.id)
                               .update(Book(
-                                userId: FirebaseAuth.instance.currentUser.uid,
+                                userId: FirebaseAuth.instance.currentUser!.uid,
                                 title: _titleTextController.text,
                                 author: _authorTextController.text,
                                 photoUrl: _photoTextController.text,
-                                rating: _rating == null
-                                    ? widget.book.rating
-                                    : _rating,
+                                rating: _rating ?? widget.book!.rating,
                                 startedReading: isReadingClicked
                                     ? Timestamp.now()
-                                    : widget.book.startedReading,
+                                    : widget.book!.startedReading,
                                 finishedReading: isFinishedReadingClicked
                                     ? Timestamp.now()
-                                    : widget.book.finishedReading,
-                                notes: _notestTextController.text,
+                                    : widget.book!.finishedReading,
+                                notes: _notestTextController!.text,
                                 categories: '',
                                 publishedDate: '',
                                 description: '',
@@ -270,7 +270,7 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                                 TextButton(
                                     onPressed: () {
                                       _bookCollectionReference
-                                          .doc(widget.book.id)
+                                          .doc(widget.book!.id)
                                           .delete();
                                       Navigator.push(
                                           context,

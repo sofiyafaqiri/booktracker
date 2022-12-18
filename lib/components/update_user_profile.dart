@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 
 class UpdateUserProfile extends StatelessWidget {
   const UpdateUserProfile({
-    Key key,
-    this.user,
-    TextEditingController displayNameTextController,
-    TextEditingController profesionTextController,
-    TextEditingController quoteTextController,
-    TextEditingController avatarTextController,
+    Key? key,
+    required this.user,
+    required TextEditingController displayNameTextController,
+    required TextEditingController profesionTextController,
+    required TextEditingController quoteTextController,
+    required TextEditingController avatarTextController,
   })  : _displayNameTextController = displayNameTextController,
         _profesionTextController = profesionTextController,
         _quoteTextController = quoteTextController,
@@ -38,8 +38,8 @@ class UpdateUserProfile extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: CircleAvatar(
                   backgroundColor: Colors.transparent,
-                  backgroundImage: NetworkImage(user.avatarUrl != null
-                      ? user.avatarUrl
+                  backgroundImage: NetworkImage(user.avatarUrl! != null
+                      ? user.avatarUrl!
                       : 'https://i.pravatar.cc/300'),
                   radius: 50,
                 ),

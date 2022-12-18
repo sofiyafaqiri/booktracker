@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class FAB extends StatelessWidget {
   const FAB({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

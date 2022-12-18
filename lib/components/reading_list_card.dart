@@ -5,18 +5,18 @@ import 'two_sided_roundbutton.dart';
 import 'package:flutter/material.dart';
 
 class ReadingListCard extends StatelessWidget {
-  final String image;
-  final String title;
-  final String author;
-  final double rating;
-  final String buttonText;
-  final Book book;
-  final bool isBookRad;
-  final VoidCallback pressDetails;
-  final VoidCallback pressRead;
+  final String? image;
+  final String? title;
+  final String? author;
+  final double? rating;
+  final String? buttonText;
+  final Book? book;
+  final bool? isBookRad;
+  final VoidCallback? pressDetails;
+  final VoidCallback? pressRead;
 
   const ReadingListCard(
-      {Key key,
+      {Key? key,
       this.image,
       this.title,
       this.author,
@@ -57,7 +57,8 @@ class ReadingListCard extends StatelessWidget {
             child: SizedBox.fromSize(
               size: Size.fromRadius(48), // Image radius
               child: Image.network(
-                image,
+                image!,
+                // 'https://navoki.com/wp-content/uploads/2019/09/200_40.png',
                 width: 100,
               ),
             ),
@@ -109,8 +110,8 @@ class ReadingListCard extends StatelessWidget {
                         ),
                         Expanded(
                             child: TwoSidedRoundeButton(
-                                text: buttonText,
-                                press: pressRead,
+                                text: buttonText!,
+                                press: pressRead ?? () {},
                                 color: buttonText == 'Reading'
                                     ? kIconColor
                                     : kLightPurple))

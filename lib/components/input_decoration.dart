@@ -1,7 +1,7 @@
 import 'package:book_tracker/utilities/constant.dart';
 import 'package:flutter/material.dart';
 
-InputDecoration buildInputDecoration({String label, String hintText}) {
+InputDecoration buildInputDecoration({String? label, String? hintText}) {
   return InputDecoration(
       fillColor: Colors.white,
       focusedBorder: OutlineInputBorder(

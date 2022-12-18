@@ -8,9 +8,9 @@ import 'package:flutter/material.dart';
 
 class MainAppbar extends StatelessWidget with PreferredSizeWidget {
   const MainAppbar({
-    Key key,
-    @required this.curUser,
-    @required this.userBooksReadList,
+    Key? key,
+    required this.curUser,
+    required this.userBooksReadList,
   }) : super(key: key);
 
   @override
@@ -34,7 +34,7 @@ class MainAppbar extends StatelessWidget with PreferredSizeWidget {
         'Book Tracker',
         style: Theme.of(context)
             .textTheme
-            .headline6
+            .headline6!
             .copyWith(color: kIconColor, fontWeight: FontWeight.bold),
       ),
       actions: [

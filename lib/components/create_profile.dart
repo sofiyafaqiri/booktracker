@@ -25,9 +25,9 @@ Widget createProfileDialog(
           children: [
             CircleAvatar(
               backgroundColor: Colors.black26,
-              backgroundImage: NetworkImage(curUser.avatarUrl == null
+              backgroundImage: NetworkImage(curUser.avatarUrl! == null
                   ? 'https://i.pravatar.cc/300'
-                  : curUser.avatarUrl),
+                  : curUser.avatarUrl!),
               radius: 50,
             )
           ],
@@ -36,7 +36,7 @@ Widget createProfileDialog(
           'Books Read (${bookList.length})',
           style: Theme.of(context)
               .textTheme
-              .bodyText1
+              .bodyText1!
               .copyWith(color: Colors.redAccent),
         ),
         Row(
@@ -45,7 +45,7 @@ Widget createProfileDialog(
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                curUser.displayName.toUpperCase(),
+                curUser.displayName!.toUpperCase(),
                 style: Theme.of(context).textTheme.subtitle1,
               ),
             ),
@@ -117,7 +117,7 @@ Widget createProfileDialog(
                           : " \" ${curUser.quote} \"",
                       style: Theme.of(context)
                           .textTheme
-                          .bodyText2
+                          .bodyText2!
                           .copyWith(fontStyle: FontStyle.italic),
                     ),
                   ),
@@ -141,11 +141,11 @@ Widget createProfileDialog(
                         title: Text('${book.title}'),
                         leading: CircleAvatar(
                           radius: 35,
-                          backgroundImage: NetworkImage(book.photoUrl),
+                          backgroundImage: NetworkImage(book.photoUrl!),
                         ),
                         subtitle: Text('${book.author}'),
                       ),
-                      Text('Finished on: ${formatDate(book.finishedReading)}')
+                      Text('Finished on: ${formatDate(book.finishedReading!)}')
                     ],
                   ),
                 );

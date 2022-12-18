@@ -3,19 +3,19 @@ import 'package:book_tracker/utilities/utility.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Book {
-  final String id;
-  final String title;
-  final String author;
-  final String notes;
-  final String photoUrl;
-  final String categories;
-  final String publishedDate;
-  double rating;
-  final String description;
-  final int pageCount;
-  final Timestamp startedReading;
-  final Timestamp finishedReading;
-  final String userId;
+  final String? id;
+  final String? title;
+  final String? author;
+  final String? notes;
+  final String? photoUrl;
+  final String? categories;
+  final String? publishedDate;
+  double? rating;
+  final String? description;
+  final int? pageCount;
+  final Timestamp? startedReading;
+  final Timestamp? finishedReading;
+  final String? userId;
 
   Book({
     this.id,
@@ -33,6 +33,9 @@ class Book {
     this.userId,
   });
   factory Book.fromDocument(QueryDocumentSnapshot data) {
+    // print('Data ${data.data()}');
+    // String newUrl = 'https:${data.get('photo_url').toString().split(':')[1]}';
+    // print(newUrl);
     return Book(
         id: data.id,
         title: data.get('title'),

@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
-    Key key,
-    GlobalKey<FormState> formKey,
-    TextEditingController emailTextController,
-    TextEditingController passwordTextController,
+    Key? key,
+    required GlobalKey<FormState> formKey,
+    required TextEditingController emailTextController,
+    required TextEditingController passwordTextController,
   })  : _formKey = formKey,
         _emailTextController = emailTextController,
         _passwordTextController = passwordTextController,
@@ -28,7 +28,7 @@ class LoginForm extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: TextFormField(
             validator: (value) {
-              return value.isEmpty ? 'Please add an email' : null;
+              return value!.isEmpty ? 'Please add an email' : null;
             },
             controller: _emailTextController,
             decoration: buildInputDecoration(
@@ -39,7 +39,7 @@ class LoginForm extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: TextFormField(
             validator: (value) {
-              return value.isEmpty ? 'Enter password' : null;
+              return value!.isEmpty ? 'Enter password' : null;
             },
             controller: _passwordTextController,
             obscureText: true,
@@ -52,7 +52,7 @@ class LoginForm extends StatelessWidget {
         TextButton(
             style: kLoginButtonStyle,
             onPressed: () {
-              if (_formKey.currentState.validate()) {
+              if (_formKey.currentState!.validate()) {
                 FirebaseAuth.instance
                     .signInWithEmailAndPassword(
                         email: _emailTextController.text,

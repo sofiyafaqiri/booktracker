@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        StreamProvider<User>(
+        StreamProvider<User?>(
           initialData: null,
           create: (context) => FirebaseAuth.instance.authStateChanges(),
         )
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
           print(settings.name);
           return MaterialPageRoute(
             builder: (context) {
-              return RouteController(settingName: settings.name);
+              return RouteController(settingName: settings.name!);
             },
           );
         },

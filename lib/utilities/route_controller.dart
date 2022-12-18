@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class RouteController extends StatelessWidget {
-  final String settingName;
+  final String? settingName;
 
-  const RouteController({Key key, this.settingName}) : super(key: key);
+  const RouteController({Key? key, this.settingName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

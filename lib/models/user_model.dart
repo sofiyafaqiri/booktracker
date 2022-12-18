@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class BookUser {
-  final String id;
-  final String uid;
-  final String displayName;
-  final String quote;
-  final String profession;
-  final String avatarUrl;
+  final String? id;
+  final String? uid;
+  final String? displayName;
+  final String? quote;
+  final String? profession;
+  final String? avatarUrl;
   BookUser(
       {this.id,
       this.uid,

@@ -7,18 +7,18 @@ import 'two_sided_roundbutton.dart';
 import 'package:flutter/material.dart';
 
 class NewReadingListCard extends StatelessWidget {
-  final String image;
-  final String title;
-  final String author;
-  final double rating;
-  final String buttonText;
-  final Book book;
-  final bool isBookRad;
-  final VoidCallback pressDetails;
-  final VoidCallback pressRead;
+  final String? image;
+  final String? title;
+  final String? author;
+  final double? rating;
+  final String? buttonText;
+  final Book? book;
+  final bool? isBookRad;
+  final VoidCallback? pressDetails;
+  final VoidCallback? pressRead;
 
   const NewReadingListCard(
-      {Key key,
+      {Key? key,
       this.image,
       this.title,
       this.author,
@@ -47,7 +47,7 @@ class NewReadingListCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
-                  image,
+                  image!,
                   // height: 100,
                   // width: 120,
                   fit: BoxFit.fitWidth,
@@ -91,7 +91,7 @@ class NewReadingListCard extends StatelessWidget {
                                   color: kCardBgColor, size: 14),
                               const SizedBox(width: 8),
                               Text(
-                                rating.round().toString(),
+                                rating!.round().toString(),
                                 style: const TextStyle(color: kCardBgColor),
                               ),
                             ],

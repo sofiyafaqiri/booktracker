@@ -4,7 +4,7 @@ import 'package:book_tracker/utilities/constant.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key key}) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -22,19 +22,19 @@ class _LoginPageState extends State<LoginPage> {
       child: Column(
         children: [
           Expanded(
-              flex: 2,
+              // flex: 2,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Icon(Icons.book, color: kIconColor, size: 50),
-                  SizedBox(height: 18),
-                  Text(
-                    'Book Tracker',
-                    style: TextStyle(fontSize: 30, color: kIconColor),
-                  )
-                ],
-              )),
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(Icons.book, color: kIconColor, size: 50),
+              SizedBox(height: 18),
+              Text(
+                'Book Tracker',
+                style: TextStyle(fontSize: 30, color: kIconColor),
+              )
+            ],
+          )),
           Text(
             isCreateAccountClicked ? 'Sign Up' : 'Sign In',
             style: Theme.of(context).textTheme.headline5,
@@ -45,21 +45,19 @@ class _LoginPageState extends State<LoginPage> {
           Expanded(
             flex: 3,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   padding: EdgeInsets.all(12),
-                  child: Expanded(
-                      // width: 300,
-                      // height: 300,
-                      child: isCreateAccountClicked != true
-                          ? LoginForm(
-                              formKey: _formKey,
-                              emailTextController: _emailTextController,
-                              passwordTextController: _passwordTextController)
-                          : CreateAccountForm(
-                              formKey: _formKey,
-                              emailTextController: _emailTextController,
-                              passwordTextController: _passwordTextController)),
+                  child: isCreateAccountClicked != true
+                      ? LoginForm(
+                          formKey: _formKey,
+                          emailTextController: _emailTextController,
+                          passwordTextController: _passwordTextController)
+                      : CreateAccountForm(
+                          formKey: _formKey,
+                          emailTextController: _emailTextController,
+                          passwordTextController: _passwordTextController),
                 ),
                 TextButton.icon(
                   icon: const Icon(Icons.portrait_rounded),

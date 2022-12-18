@@ -2,14 +2,14 @@ import 'package:book_tracker/utilities/constant.dart';
 import 'package:flutter/material.dart';
 
 class BookRating extends StatelessWidget {
-  final double score;
+  final double? score;
 
-  const BookRating({Key key, this.score}) : super(key: key);
+  const BookRating({Key? key, this.score}) : super(key: key);
 
   IconData getRatingIcon() {
     return score == 0
         ? Icons.star_border
-        : (score > 4.5 ? Icons.star : Icons.star_half);
+        : (score! > 4.5 ? Icons.star : Icons.star_half);
   }
 
   @override

@@ -13,7 +13,7 @@ class BookSearchPage extends StatefulWidget {
 }
 
 class _BookSearchPageState extends State<BookSearchPage> {
-  TextEditingController _searchTextController;
+  TextEditingController? _searchTextController;
 
   List<Book> listOfBooks = [];
   @override
@@ -82,7 +82,7 @@ class _BookSearchPageState extends State<BookSearchPage> {
   }
 
   void _search() async {
-    await fetchBooks(_searchTextController.text).then((value) {
+    await fetchBooks(_searchTextController!.text).then((value) {
       setState(() {
         listOfBooks = value;
       });
@@ -156,20 +156,20 @@ class _BookSearchPageState extends State<BookSearchPage> {
           child: Wrap(
             children: [
               Image.network(
-                (book.photoUrl == null || book.photoUrl.isEmpty)
+                (book.photoUrl! == null || book.photoUrl!.isEmpty)
                     ? 'https://images.unsplash.com/photo-1553729784-e91953dec042?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80'
-                    : book.photoUrl,
+                    : book.photoUrl!,
                 height: 100,
                 width: 160,
               ),
               ListTile(
                 title: Text(
-                  book.title,
+                  book.title!,
                   style: TextStyle(color: Color(0xff5d48b6)),
                   overflow: TextOverflow.ellipsis,
                 ),
                 subtitle: Text(
-                  book.author,
+                  book.author!,
                   overflow: TextOverflow.ellipsis,
                 ),
                 onTap: () {
